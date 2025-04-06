@@ -14,7 +14,6 @@ const SlideShow = () => {
     }, 2000)
   }, [])
 
-
   return (
     <Slide 
       autoplay={true}
