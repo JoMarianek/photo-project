@@ -1,4 +1,5 @@
 import { Slide } from "react-slideshow-image";
+import { useEffect, useState } from "react";
 
 const SlideShow = () => {
   const images = [
@@ -7,6 +8,19 @@ const SlideShow = () => {
     "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
   ];
 
+  const [imgArray, setImgArray] = useState<{url: string}[]>([]);
+
+  useEffect(() => {
+    setInterval(() => {
+      fetch('https://eef2-88-64-225-234.ngrok-free.app/photos')
+        .then((response) => response.json())
+        .then((images) => {
+          setImgArray(images)
+        })
+    }, 2000)
+  }, [])
+
+
   return (
     <Slide 
       autoplay={true}
@@ -14,15 +28,14 @@ const SlideShow = () => {
       transitionDuration={500}
       infinite={true}
     >
-      <div className="flex items-center justify-center bg-center bg-contain bg-no-repeat h-screen" style={{ 'backgroundImage': `url(${images[0]})` }}>
-        <span>Slide 1</span>
-      </div>
-      <div className="flex items-center justify-center bg-contain bg-center bg-no-repeat h-screen" style={{ 'backgroundImage': `url(${images[1]})` }}>
-        <span>Slide 2</span>
-      </div>
-      <div className="flex items-center justify-center bg-center bg-contain bg-no-repeat h-screen" style={{ 'backgroundImage': `url(${images[2]})` }}>
-        <span>Slide 3</span>
-      </div>
+      {imgArray.map((img, index) => (
+        <div 
+          key={index} 
+          className="flex items-center justify-center bg-center bg-contain bg-no-repeat h-screen" 
+          style={{ 'backgroundImage': `url(${img.url})` }}>
+        </div>
+        )
+      )}
     </Slide>
   )
 }

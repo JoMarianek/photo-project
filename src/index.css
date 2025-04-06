@@ -11,9 +11,13 @@
 }
 
 body {
-  @apply min-h-screen;
+  @apply h-screen;
+  @apply p-2;
 }
 
+#root {
+  @apply h-full;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
