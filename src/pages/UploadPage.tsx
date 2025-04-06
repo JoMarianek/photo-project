@@ -8,7 +8,7 @@ const UploadPage = () => {
         <p>Upload your pictures here &#128520;</p>
         <form encType="multipart/form-data" action="https://eef2-88-64-225-234.ngrok-free.app/upload" className="flex border justify-center rounded gap-10 p-4" method="post">
           <input className="border rounded flex" type="file" accept="image/*" name="upload"/>
-          <button className="border rounded p-2" type="submit" disabled={pending}>
+          <button className="bg-blush text-white border rounded p-2" type="submit" disabled={pending}>
             {pending ? "Submitting..." : "Submit"}
           </button>
         </form>
