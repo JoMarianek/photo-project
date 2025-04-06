@@ -6,7 +6,7 @@ const SlideShow = () => {
 
   useEffect(() => {
     setInterval(() => {
-      fetch('https://eef2-88-64-225-234.ngrok-free.app/photos')
+      fetch('/photos')
         .then((response) => response.json())
         .then((images) => {
           setImgArray(images)
